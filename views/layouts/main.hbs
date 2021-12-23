@@ -15,6 +15,18 @@
 </head>
 
 <body>
+  <header>
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+      <a class="navbar-brand" href="/">
+        {{#if user}}{{user.name}}'s{{/if}} 私房錢
+      </a>
+      {{#if isAuthenticated}}
+        <a class="btn btn-outline-danger" href="/users/logout">Logout</a>
+      {{else}}
+        <a class="btn btn-outline-info" href="/users/login">Login</a>
+      {{/if}}
+    </nav>
+  </header>
   {{{body}}}
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

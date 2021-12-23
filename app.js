@@ -7,6 +7,9 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 
+// 載入 mongodb
+require('./config/mongoose')
+
 const app = express()
 const PORT = process.env.PORT
 const routes = require('./routes')
@@ -26,5 +29,5 @@ app.use(methodOverride('_method'))
 app.use(routes)
 
 app.listen(PORT, () => {
-  console.log(`App is running on http://localhost:${PORT}`)git 
+  console.log(`App is running on http://localhost:${PORT}`)
 })
