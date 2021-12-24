@@ -1,0 +1,27 @@
+[
+  {
+  "id":"1",
+  "name": "交通出行",
+  "icon": "fas fa-shuttle-van"
+  }, 
+  {
+  "id":"2",
+  "name": "家居物業",
+  "icon": "fas fa-home"
+  }, 
+  {
+  "id":"3",
+  "name": "餐飲食品",
+  "icon": "fas fa-utensils"
+  }, 
+  {
+  "id":"4",
+  "name": "休閒娛樂",
+  "icon": "fas fa-grin-beam"
+  }, 
+  {
+  "id":"5",
+  "name": "其他",
+  "icon": "fas fa-pen"
+  }
+]
