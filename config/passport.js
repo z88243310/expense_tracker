@@ -10,7 +10,7 @@ module.exports = app => {
 
   // 設定本地登入策略
   passport.use(
-    new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+    new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (req, email, password, done) => {
       User.findOne({ email }).then(user => {
         // 使用者不存在
         if (!user) {
