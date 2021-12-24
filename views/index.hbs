@@ -1,1 +1,7 @@
-<h1>This is index page</h1>
+<ul>
+  {{#each records}}
+    <li>
+      <i class="{{this.categoryId.icon}}"></i> {{this.name}} {{this.date}} {{this.amount}}
+    </li>
+  {{/each}}
+</ul>
