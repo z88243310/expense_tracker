@@ -10,6 +10,7 @@ router.get('/login', (req, res) => {
   res.render('login')
 })
 
+// 登入
 router.post(
   '/login',
   passport.authenticate('local', {
@@ -17,6 +18,12 @@ router.post(
     failureRedirect: '/users/login'
   })
 )
+
+// 登出
+router.get('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/users/login')
+})
 
 // 註冊頁面
 router.get('/register', (req, res) => {
