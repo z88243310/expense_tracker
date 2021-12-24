@@ -1,9 +1,9 @@
-<form action="/records/edit/{{id}}?_method=PUT" method="POST">
+<form action="/records/edit/{{_id}}?_method=PUT" method="POST">
   <h1>請輸入你的支出</h1>
   {{>message}}
   <input type="text" placeholder="名稱" name="name" value="{{name}}">
   <input type="date" placeholder="日期" name="date" value="{{date}}">
-  <select name="categoryId" value="{{categoryId}}">
+  <select name="categoryId">
     {{#each categories}}
       <option value="{{this._id}}" {{#ifCond this._id ../categoryId}} selected {{/ifCond}}>
         {{this.name}}

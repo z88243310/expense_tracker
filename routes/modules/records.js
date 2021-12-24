@@ -18,7 +18,7 @@ router.post('/new', async (req, res) => {
   const userId = req.user._id
   const { name, date, categoryId, amount } = req.body
   const errors = []
-  if (!name || !date || !amount || !userId || !categoryId) {
+  if (!name || !date || !amount || !categoryId) {
     errors.push({ message: '所有欄位都是必填' })
   }
   // 符合以上狀態，直接回傳錯誤
@@ -32,18 +32,31 @@ router.post('/new', async (req, res) => {
 
 // 編輯頁面
 router.get('/edit/:id', async (req, res) => {
-  const id = req.params.id
+  const _id = req.params.id
+  const userId = req.user._id
   const categories = await Category.find().lean()
-  const record = await Record.findById(id).lean()
+  const record = await Record.findOne({ _id, userId }).lean()
   getFormatDate(record)
-  return res.render('edit', { ...record, id, categories })
+  return res.render('edit', { ...record, _id, categories })
 })
 
 // 編輯
 router.put('/edit/:id', async (req, res) => {
-  const id = req.params.id
-  const record = await Record.findById(id)
-  Object.assign(record, req.body).save()
+  const _id = req.params.id
+  const userId = req.user._id
+  const { name, date, categoryId, amount } = req.body
+  const errors = []
+  if (!name || !date || !amount || !categoryId) {
+    errors.push({ message: '所有欄位都是必填' })
+  }
+  // 符合以上狀態，直接回傳錯誤
+  if (errors.length) {
+    const categories = await Category.find().lean()
+    return res.render('new', { errors, name, date, amount, categoryId, categories })
+  }
+  //  找出紀錄 覆寫存檔
+  const record = await Record.findOne({ _id, userId })
+  await Object.assign(record, req.body).save()
   return res.redirect('/')
 })
 
