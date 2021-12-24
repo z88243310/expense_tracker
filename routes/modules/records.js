@@ -5,6 +5,8 @@ const User = require('../../models/user')
 const Record = require('../../models/record')
 const Category = require('../../models/category')
 
+const getFormatDate = require('../../tools/getFormatDate')
+
 // 新增頁面
 router.get('/new', async (req, res) => {
   const categories = await Category.find().lean()
@@ -24,8 +26,24 @@ router.post('/new', async (req, res) => {
     const categories = await Category.find().lean()
     return res.render('new', { errors, name, date, amount, categoryId, categories })
   }
-
   await Record.create({ name, date, amount, userId, categoryId })
+  return res.redirect('/')
+})
+
+// 編輯頁面
+router.get('/edit/:id', async (req, res) => {
+  const id = req.params.id
+  const categories = await Category.find().lean()
+  const record = await Record.findById(id).lean()
+  getFormatDate(record)
+  return res.render('edit', { ...record, id, categories })
+})
+
+// 編輯
+router.put('/edit/:id', async (req, res) => {
+  const id = req.params.id
+  const record = await Record.findById(id)
+  Object.assign(record, req.body).save()
   return res.redirect('/')
 })
 

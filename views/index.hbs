@@ -2,6 +2,7 @@
   {{#each records}}
     <li>
       <i class="{{this.categoryId.icon}}"></i> {{this.name}} {{this.date}} {{this.amount}}
+      <a href="/records/edit/{{this._id}}">修改</a>
     </li>
   {{/each}}
 </ul>
