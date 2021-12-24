@@ -20,7 +20,7 @@ const routes = require('./routes')
 // session setting
 app.use(
   session({
-    secret: 'ThisIsMySecret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true
   })
