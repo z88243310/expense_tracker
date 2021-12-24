@@ -7,10 +7,14 @@ const getFormatDate = require('../../tools/getFormatDate')
 
 router.get('/', async (req, res) => {
   const userId = req.user._id
-  const categories = await Category.find().lean()
-  const records = await Record.find({ userId }).populate('categoryId').sort({ date: 'desc' }).lean()
-  getFormatDate(records)
-  return res.render('index', { records, categories })
+  try {
+    const categories = await Category.find().lean()
+    const records = await Record.find({ userId }).populate('categoryId').sort({ date: 'desc' }).lean()
+    getFormatDate(records)
+    return res.render('index', { records, categories })
+  } catch (error) {
+    return console.log(error)
+  }
 })
 
 module.exports = router
