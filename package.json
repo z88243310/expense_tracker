@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "dev": "nodemon -e js,json,hbs app.js",
-    "seed": "node models/seeds/categorySeeder.js && node models/seeds/recordSeeder.js"
+    "seed": "node models/seeds/categorySeeder.js && node models/seeds/recordSeeder.js",
+    "dropDB": "node models/seeds/dropDatabase.js"
+
   },
   "keywords": [],
   "author": "",
