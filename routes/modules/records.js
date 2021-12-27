@@ -55,7 +55,6 @@ router.get('/edit/:id', async (req, res) => {
 // 編輯
 router.put('/edit/:id', async (req, res) => {
   const _id = req.params.id
-  console.log(_id)
   const userId = req.user._id
   const { name, date, categoryId, amount } = req.body
   const errors = []

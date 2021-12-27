@@ -9,9 +9,8 @@ categorySelect.addEventListener('change', function onCategorySelectChanged(event
   location.replace(`/?categoryIdSelected=${categoryIdSelected}&keyword=${keyword}`)
 })
 
-// // 去除 特殊符號
-// searchInput.addEventListener('keyup', function onSearchInputKeyUP(event) {
-//   const target = event.target
-//   target.value = target.value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g, '')
-//   // target.value = target.value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g, '')
-// })
+// 去除 特殊符號
+searchInput.addEventListener('keyup', function onSearchInputKeyUP(event) {
+  const target = event.target
+  target.value = target.value.replace(/[\(\)]|[\[\]]|[\\\?\+\*]/g, '')
+})
