@@ -1,3 +1,11 @@
+<select id="category-select" name="categorySelected">
+  <option value="">所有類別</option>
+  {{#each categories}}
+    <option value="{{this._id}}" {{#ifCond ../categoryIdSelected this._id}}selected{{/ifCond}}>
+      {{this.name}}
+    </option>
+  {{/each}}
+</select>
 <h2 class="ml-5">總金額：{{totalAmount}}</h2>
 <ul>
   {{#each records}}
@@ -12,3 +20,4 @@
   {{/each}}
 </ul>
 <a class="btn btn-outline-primary ml-5" href="/records/new">新增支出</a>
+<script src="/javascripts/index-page.js"></script>

@@ -31,6 +31,9 @@ app.engine('hbs', engine({ defaultLayout: 'main', extname: '.hbs', helpers: requ
 app.set('view engine', 'hbs')
 app.set('views', './views')
 
+// set public dir
+app.use(express.static('public'))
+
 // use body-parser
 app.use(express.urlencoded({ extended: true }))
 

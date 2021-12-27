@@ -55,6 +55,7 @@ router.get('/edit/:id', async (req, res) => {
 // 編輯
 router.put('/edit/:id', async (req, res) => {
   const _id = req.params.id
+  console.log(_id)
   const userId = req.user._id
   const { name, date, categoryId, amount } = req.body
   const errors = []
@@ -65,7 +66,7 @@ router.put('/edit/:id', async (req, res) => {
   try {
     if (errors.length) {
       const categories = await Category.find().lean()
-      return res.render('new', { errors, name, date, amount, categoryId, categories })
+      return res.render('edit', { errors, _id, name, date, amount, categoryId, categories })
     }
     //  找出紀錄 覆寫存檔
     const record = await Record.findOne({ _id, userId })
