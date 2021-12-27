@@ -20,7 +20,7 @@
       <form action="/records/delete/{{this._id}}?_method=DELETE" method="POST"
         class="d-inline-block">
         <a class="btn btn-outline-primary" href="/records/edit/{{this._id}}">修改</a>
-        <button type="submit" class="btn btn-outline-danger">刪除</button>
+        <button id="delete-btn" type="submit" class="btn btn-outline-danger">刪除</button>
       </form>
     </li>
   {{/each}}
