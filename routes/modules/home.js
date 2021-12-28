@@ -7,7 +7,6 @@ const getFormatDate = require('../../tools/getFormatDate')
 const getTotalAmount = require('../../tools/getTotalAmount')
 
 router.get('/', async (req, res) => {
-  console.log(req.query)
   const userId = req.user._id
   // search keyword & categoryId selected
   const keyword = req.query.keyword ? req.query.keyword.trim() : ''
@@ -17,19 +16,16 @@ router.get('/', async (req, res) => {
   try {
     // 如果 categoryIdSelected 為 有效值，則 列入篩選條件
     const categories = await Category.find().lean()
-    const categoryIndex = categories.findIndex(category => String(category._id) === String(categoryIdSelected))
-    const records = await Record.find(
-      categoryIndex === -1
-        ? { userId, name: { $regex: keyword } }
-        : {
-            userId,
-            categoryId: categoryIdSelected,
-            name: { $regex: keyword }
-          }
-    )
-      .populate('categoryId')
-      .sort({ date: 'desc' })
-      .lean()
+    const searchKey = { userId }
+    if (keyword !== '') searchKey.name = { $regex: keyword }
+    if (categoryIdSelected !== '') searchKey.categoryId = categoryIdSelected
+    if (monthSelected !== '')
+      searchKey.date = {
+        $gte: new Date(1900, monthSelected - 1),
+        $lte: new Date(2021, monthSelected)
+      }
+    console.log(searchKey)
+    const records = await Record.find(searchKey).populate('categoryId').sort({ date: 'desc' }).lean()
 
     // 調整時間格式 > 計算總金額 > 渲染畫面
     getFormatDate(records)
