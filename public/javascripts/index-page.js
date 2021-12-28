@@ -1,9 +1,16 @@
 const categorySelect = document.querySelector('#category-select')
+const monthSelect = document.querySelector('#month-select')
 const searchInput = document.querySelector('#search-input')
 const deleteButtons = document.querySelectorAll('#delete-btn')
 
-// 當 categorySelect 改變時，發送 request categoryIdSelected & keyword
+// 當 categorySelect 改變時，提交表單
 categorySelect.addEventListener('change', function onCategorySelectChanged(event) {
+  const target = event.target
+  target.parentElement.submit()
+})
+
+// 當 monthSelect 改變時，提交表單
+monthSelect.addEventListener('change', function onCategorySelectChanged(event) {
   const target = event.target
   target.parentElement.submit()
 })

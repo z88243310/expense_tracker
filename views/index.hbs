@@ -1,4 +1,5 @@
 <form class="d-inline-block form-inline my-2 my-lg-0" action="/" method="get">
+  <!-- categorySelected -->
   <select class="d-inline-block" id="category-select" name="categoryIdSelected">
     <option value="">所有類別</option>
     {{#each categories}}
@@ -7,6 +8,16 @@
       </option>
     {{/each}}
   </select>
+  <!-- monthSelected -->
+  <select class="d-inline-block" id="month-select" name="monthSelected">
+    <option value="">所有月份</option>
+    {{#times 12}}
+      <option value="{{this}}" {{#ifCond ../monthSelected this}}selected{{/ifCond}}>
+        {{this}}月
+      </option>
+    {{/times}}
+  </select>
+  <!-- keyword -->
   <input id="search-input" class="form-control mr-sm-2" type="search" name="keyword"
     value="{{keyword}}" placeholder="name" aria-label="Search">
   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

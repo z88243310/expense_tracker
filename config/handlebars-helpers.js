@@ -1,8 +1,15 @@
 module.exports = {
   ifCond: function (a, b, options) {
-    if (JSON.stringify(a) === JSON.stringify(b)) {
-      return options.fn(this)
+    if (String(a) === String(b)) {
+      return options.fn()
     }
-    return options.inverse(this)
+    return options.inverse()
+  },
+  times: function (n, options) {
+    let count = ''
+    for (let i = 1; i <= n; i++) {
+      count += options.fn(i)
+    }
+    return count
   }
 }
