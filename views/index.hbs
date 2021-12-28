@@ -1,13 +1,12 @@
-<select class="d-inline-block" id="category-select" name="categorySelected">
-  <option value="">所有類別</option>
-  {{#each categories}}
-    <option value="{{this._id}}" {{#ifCond ../categoryIdSelected this._id}}selected{{/ifCond}}>
-      {{this.name}}
-    </option>
-  {{/each}}
-</select>
 <form class="d-inline-block form-inline my-2 my-lg-0" action="/" method="get">
-  <input type="hidden" name="categoryIdSelected" value="{{categoryIdSelected}}">
+  <select class="d-inline-block" id="category-select" name="categoryIdSelected">
+    <option value="">所有類別</option>
+    {{#each categories}}
+      <option value="{{this._id}}" {{#ifCond ../categoryIdSelected this._id}}selected{{/ifCond}}>
+        {{this.name}}
+      </option>
+    {{/each}}
+  </select>
   <input id="search-input" class="form-control mr-sm-2" type="search" name="keyword"
     value="{{keyword}}" placeholder="name" aria-label="Search">
   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

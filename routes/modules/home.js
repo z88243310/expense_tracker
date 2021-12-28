@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
   // search keyword & categoryId selected
   const keyword = req.query.keyword ? req.query.keyword.trim() : ''
   const categoryIdSelected = req.query.categoryIdSelected || ''
+
   try {
     // 如果 categoryIdSelected 為 有效值，則 列入篩選條件
     const categories = await Category.find().lean()
