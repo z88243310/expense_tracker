@@ -8,15 +8,27 @@
       </option>
     {{/each}}
   </select>
-  <!-- monthSelected -->
-  <select class="d-inline-block" id="month-select" name="monthSelected">
-    <option value="">所有月份</option>
-    {{#times 12}}
-      <option value="{{this}}" {{#ifCond ../monthSelected this}}selected{{/ifCond}}>
-        {{this}}月
+  <!-- yearSelected -->
+  <select class="d-inline-block" id="year-select" name="yearSelected">
+    <option value="">所有年份</option>
+    {{#times 2020 2022}}
+      <option value="{{this}}" {{#ifCond ../yearSelected this}}selected{{/ifCond}}>
+        {{this}}年
       </option>
     {{/times}}
   </select>
+  <!-- monthSelected -->
+  {{#ifCond yearSelected ''}}
+    {{else}}
+      <select class="d-inline-block" id="month-select" name="monthSelected">
+        <option value="">所有月份</option>
+        {{#times 1 12}}
+          <option value="{{this}}" {{#ifCond ../../monthSelected this}}selected{{/ifCond}}>
+            {{this}}月
+          </option>
+        {{/times}}
+      </select>
+  {{/ifCond}}
   <!-- keyword -->
   <input id="search-input" class="form-control mr-sm-2" type="search" name="keyword"
     value="{{keyword}}" placeholder="name" aria-label="Search">

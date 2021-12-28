@@ -12,25 +12,34 @@ router.get('/', async (req, res) => {
   const keyword = req.query.keyword ? req.query.keyword.trim() : ''
   const categoryIdSelected = req.query.categoryIdSelected || ''
   const monthSelected = req.query.monthSelected || ''
+  const yearSelected = req.query.yearSelected || ''
+  const year = { start: 1900, end: 3000 }
 
   try {
-    // 如果 categoryIdSelected 為 有效值，則 列入篩選條件
     const categories = await Category.find().lean()
+    // 列入篩選條件
     const searchKey = { userId }
-    if (keyword !== '') searchKey.name = { $regex: keyword }
-    if (categoryIdSelected !== '') searchKey.categoryId = categoryIdSelected
-    if (monthSelected !== '')
+    if (keyword) searchKey.name = { $regex: keyword }
+    if (categoryIdSelected) searchKey.categoryId = categoryIdSelected
+    if (yearSelected) {
+      year.start = yearSelected
+      year.end = yearSelected
       searchKey.date = {
-        $gte: new Date(1900, monthSelected - 1),
-        $lte: new Date(2021, monthSelected)
+        $gte: new Date(year.start, 0),
+        $lte: new Date(year.end, 12)
       }
-    console.log(searchKey)
+    }
+    if (monthSelected)
+      searchKey.date = {
+        $gte: new Date(year.start, monthSelected - 1),
+        $lte: new Date(year.end, monthSelected)
+      }
     const records = await Record.find(searchKey).populate('categoryId').sort({ date: 'desc' }).lean()
 
     // 調整時間格式 > 計算總金額 > 渲染畫面
     getFormatDate(records)
     const totalAmount = getTotalAmount(records)
-    return res.render('index', { records, categories, totalAmount, categoryIdSelected, keyword, monthSelected })
+    return res.render('index', { records, categories, totalAmount, categoryIdSelected, keyword, monthSelected, yearSelected })
   } catch (error) {
     return console.log(error)
   }

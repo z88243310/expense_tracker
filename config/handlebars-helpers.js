@@ -5,9 +5,9 @@ module.exports = {
     }
     return options.inverse()
   },
-  times: function (n, options) {
+  times: function (start, end, options) {
     let count = ''
-    for (let i = 1; i <= n; i++) {
+    for (let i = start; i <= end; i++) {
       count += options.fn(i)
     }
     return count
