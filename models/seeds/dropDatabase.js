@@ -13,9 +13,9 @@ const inquirer = readline.createInterface({
 
 db.once('open', async () => {
   try {
-    inquirer.question(`Warning: input 'yes' to delete database : `, confirm => {
+    inquirer.question(`Warning: input 'yes' to delete database : `, async confirm => {
       if (confirm === 'yes') {
-        // await db.dropDatabase()
+        await db.dropDatabase()
         console.log('Database is dropped!')
       } else console.log('cancel action')
       inquirer.close()
