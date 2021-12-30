@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/stylesheets/index-page.css">
-<div class="mx-auto border record-container">
+<div class="mx-auto shadow record-container">
   <!-- 篩選條件 -->
   <form id="form-search" action="/" method="get">
     <!-- categorySelected -->
@@ -24,10 +24,9 @@
       </select>
       <!-- monthSelected -->
       <select class="d-inline-block form-select" id="month-select" name="monthSelected" {{#ifCond
-        yearSelected '' }} disabled{{/ifCond}}>
+        yearSelected '' }} disabled {{/ifCond}}>
         <option value="">所有月份</option>
-        {{#ifCond
-        yearSelected '' }}
+        {{#ifCond yearSelected '' }}
           {{else}}
             {{#times 1 12}}
               <option value="{{this}}" {{#ifCond ../../monthSelected this}}selected{{/ifCond}}>
@@ -39,8 +38,11 @@
     </div>
     <!-- keyword -->
     <div class="search-block">
-      <input id="search-input" class="form-control" type="search" name="keyword" value="{{keyword}}"
-        placeholder="name" aria-label="Search">
+      <div class="search-input-block">
+        <input id="search-input" class="form-control d-inline-block" type="search" name="keyword"
+          value="{{keyword}}" placeholder="name" aria-label="Search">
+        <i class="fas fa-times" id="search-icon"></i>
+      </div>
       <button id="search-btn" class="btn btn-outline-info" type="submit">Search</button>
     </div>
   </form>
@@ -77,31 +79,8 @@
       </div>
     {{/each}}
   </div>
-  <div class="text-center my-3">
+  <div class="text-center">
     <a class="btn btn-info" id="create-btn" href="/records/new">新增支出</a>
   </div>
 </div>
 <script src="/javascripts/index-page.js"></script>
-<!-- {{#each records}}
-  <div class="record-content">
-    <div class="record-list" {{#ifOdd @index}} style="background-color: rgba(211, 211, 211, 0.329);"
-      {{/ifOdd}}>
-      <div class="record-icon-block text-center">
-        <i class="{{this.categoryId.icon}} border" id="record-icon"></i>
-      </div>
-      <div class="record-info-block">
-        <span id="record-name">{{this.name}}</span>
-        <span id="record-date">{{this.date}}</span>
-      </div>
-      <div class="record-amount-block text-right">
-        <span id="record-amount">{{this.amount}}</span>
-      </div>
-    </div>
-    <form action="/records/delete/{{this._id}}?_method=DELETE" method="POST" class="d-inline-block"
-      id="form-delete">
-      <a class=" d-inline-block btn btn-outline-info" id="edit-btn"
-        href="/records/edit/{{this._id}}">修改</a>
-      <button id="delete-btn" type="submit" class="btn btn-outline-info d-inline-block">刪除</button>
-    </form>
-  </div>
-{{/each}} -->

@@ -3,6 +3,8 @@
   max-width: 300px;
   min-width: 150px;
   min-height: 300px;
+  border-radius: 10px;
+  border: 1px solid rgba(211, 211, 211, 0.329);
 }
 
 /* 搜尋 */
@@ -11,12 +13,24 @@
   justify-content: space-between;
   margin: 15px 10px;
 }
-#search-input {
+.search-input-block {
   width: 75%;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
+  position: relative;
+}
+#search-input {
   border: 0.5px solid #17a2b8;
   border-right: none;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+#search-icon {
+  position: absolute;
+  top: 13px;
+  right: 5px;
+  color: rgba(134, 134, 134, 0.418);
+}
+#search-icon:hover {
+  color: black;
 }
 #search-btn {
   width: 25%;
@@ -28,24 +42,28 @@
 .form-select-block {
   display: flex;
   justify-content: space-between;
-  margin: 6px 10px;
+  margin: 10px 10px 10px 10px;
 }
 
 .form-select {
   font-size: 12px;
   margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  padding: 4px 5px;
 }
 
 /* 總金額 */
 .total-block {
   display: flex;
+  margin: 6px 10px;
 }
 .total-name-block {
   width: 25%;
   height: 60px;
 }
 #total-name {
-  padding-left: 5px;
   font-size: 16px;
 }
 .total-amount-block {
@@ -57,8 +75,7 @@
 #total-amount {
   position: absolute;
   font-size: 50px;
-  right: 5px;
-  margin: 0px;
+  right: 0px;
 }
 
 /* 清單項目 */
@@ -122,4 +139,14 @@
   border: 0;
   padding: 0px 2px 0px 2px;
   font-size: 12px;
+}
+
+/* 新增 */
+#create-btn {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 35px;
+  line-height: 30px;
+  width: 35%;
+  padding: 0px 12px 6px 12px;
 }
