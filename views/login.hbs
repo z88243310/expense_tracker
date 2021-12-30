@@ -2,9 +2,9 @@
 {{>message}}
 <form action="/users/login" method="POST">
   <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email"
-    required>
+    required value="user1@example.com">
   <input type="password" id="password" name="password" class="form-control"
-    placeholder="Enter Password" required>
+    placeholder="Enter Password" required value="12345678">
   <button type="submit" class="btn btn-primary btn-block">Login</button>
   <a href="/auth/facebook" class="btn btn-info btn-block">Facebook Login</a>
 </form>

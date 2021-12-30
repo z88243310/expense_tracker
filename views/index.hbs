@@ -1,41 +1,48 @@
 <link rel="stylesheet" href="/stylesheets/index-page.css">
 <div class="mx-auto border record-container">
   <!-- 篩選條件 -->
-  <form class="d-inline-block form-inline my-2 my-lg-0" action="/" method="get">
+  <form id="form-search" action="/" method="get">
     <!-- categorySelected -->
-    <select class="d-inline-block form-select" id="category-select" name="categoryIdSelected">
-      <option value="">所有類別</option>
-      {{#each categories}}
-        <option value="{{this._id}}" {{#ifCond ../categoryIdSelected this._id}}selected{{/ifCond}}>
-          {{this.name}}
-        </option>
-      {{/each}}
-    </select>
-    <!-- yearSelected -->
-    <select class="d-inline-block form-select" id="year-select" name="yearSelected">
-      <option value="">所有年份</option>
-      {{#times 2020 2022}}
-        <option value="{{this}}" {{#ifCond ../yearSelected this}}selected{{/ifCond}}>
-          {{this}}年
-        </option>
-      {{/times}}
-    </select>
-    <!-- monthSelected -->
-    {{#ifCond yearSelected ''}}
-      {{else}}
-        <select class="d-inline-block form-select" id="month-select" name="monthSelected">
-          <option value="">所有月份</option>
-          {{#times 1 12}}
-            <option value="{{this}}" {{#ifCond ../../monthSelected this}}selected{{/ifCond}}>
-              {{this}}月
-            </option>
-          {{/times}}
-        </select>
-    {{/ifCond}}
+    <div class="form-select-block">
+      <select class="d-inline-block form-select" id="category-select" name="categoryIdSelected">
+        <option value="">所有類別</option>
+        {{#each categories}}
+          <option value="{{this._id}}" {{#ifCond ../categoryIdSelected
+            this._id}}selected{{/ifCond}}>
+            {{this.name}}
+          </option>
+        {{/each}}
+      </select>
+      <!-- yearSelected -->
+      <select class="d-inline-block form-select" id="year-select" name="yearSelected">
+        <option value="">所有年份</option>
+        {{#times 2020 2022}}
+          <option value="{{this}}" {{#ifCond ../yearSelected this}}selected{{/ifCond}}>
+            {{this}}年
+          </option>
+        {{/times}}
+      </select>
+      <!-- monthSelected -->
+      <select class="d-inline-block form-select" id="month-select" name="monthSelected" {{#ifCond
+        yearSelected '' }} disabled{{/ifCond}}>
+        <option value="">所有月份</option>
+        {{#ifCond
+        yearSelected '' }}
+          {{else}}
+            {{#times 1 12}}
+              <option value="{{this}}" {{#ifCond ../../monthSelected this}}selected{{/ifCond}}>
+                {{this}}月
+              </option>
+            {{/times}}
+        {{/ifCond}}
+      </select>
+    </div>
     <!-- keyword -->
-    <input id="search-input" class="form-control mr-sm-2" type="search" name="keyword"
-      value="{{keyword}}" placeholder="name" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <div class="search-block">
+      <input id="search-input" class="form-control" type="search" name="keyword" value="{{keyword}}"
+        placeholder="name" aria-label="Search">
+      <button id="search-btn" class="btn btn-outline-info" type="submit">Search</button>
+    </div>
   </form>
   <!-- 總金額 -->
   <div class="total-block mb-3">

@@ -6,7 +6,7 @@ const deleteButtons = document.querySelectorAll('#delete-btn')
 formSelects.forEach(formSelect => {
   formSelect.addEventListener('change', function onFormSelectChanged(event) {
     const target = event.target
-    target.parentElement.submit()
+    target.parentElement.parentElement.submit()
   })
 })
 
