@@ -1,51 +1,100 @@
-<form class="d-inline-block form-inline my-2 my-lg-0" action="/" method="get">
-  <!-- categorySelected -->
-  <select class="d-inline-block form-select" id="category-select" name="categoryIdSelected">
-    <option value="">所有類別</option>
-    {{#each categories}}
-      <option value="{{this._id}}" {{#ifCond ../categoryIdSelected this._id}}selected{{/ifCond}}>
-        {{this.name}}
-      </option>
+<link rel="stylesheet" href="/stylesheets/index-page.css">
+<div class="mx-auto border record-container">
+  <!-- 篩選條件 -->
+  <form class="d-inline-block form-inline my-2 my-lg-0" action="/" method="get">
+    <!-- categorySelected -->
+    <select class="d-inline-block form-select" id="category-select" name="categoryIdSelected">
+      <option value="">所有類別</option>
+      {{#each categories}}
+        <option value="{{this._id}}" {{#ifCond ../categoryIdSelected this._id}}selected{{/ifCond}}>
+          {{this.name}}
+        </option>
+      {{/each}}
+    </select>
+    <!-- yearSelected -->
+    <select class="d-inline-block form-select" id="year-select" name="yearSelected">
+      <option value="">所有年份</option>
+      {{#times 2020 2022}}
+        <option value="{{this}}" {{#ifCond ../yearSelected this}}selected{{/ifCond}}>
+          {{this}}年
+        </option>
+      {{/times}}
+    </select>
+    <!-- monthSelected -->
+    {{#ifCond yearSelected ''}}
+      {{else}}
+        <select class="d-inline-block form-select" id="month-select" name="monthSelected">
+          <option value="">所有月份</option>
+          {{#times 1 12}}
+            <option value="{{this}}" {{#ifCond ../../monthSelected this}}selected{{/ifCond}}>
+              {{this}}月
+            </option>
+          {{/times}}
+        </select>
+    {{/ifCond}}
+    <!-- keyword -->
+    <input id="search-input" class="form-control mr-sm-2" type="search" name="keyword"
+      value="{{keyword}}" placeholder="name" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+  <!-- 總金額 -->
+  <div class="total-block mb-3">
+    <div class="total-name-block">
+      <span id="total-name"> 總金額：</span>
+    </div>
+    <div class="total-amount-block">
+      <p id="total-amount">{{totalAmount}}</p>
+    </div>
+  </div>
+  <!-- 清單 -->
+  <div class="record-list-container">
+    {{#each records}}
+      <div class="record-list">
+        <div class="list-icon-block text-center">
+          <i class="{{this.categoryId.icon}}" id="list-icon"></i>
+        </div>
+        <div class="list-info-block">
+          <span id="info-name">{{this.name}}</span>
+          <span id="info-date">{{this.date}}</span>
+        </div>
+        <div class="list-amount-block text-right">
+          <span id="list-amount">{{this.amount}}</span>
+          <form action="/records/delete/{{this._id}}?_method=DELETE" method="POST"
+            class="d-inline-block" id="form-delete">
+            <a class=" d-inline-block btn btn-outline-info" id="edit-btn"
+              href="/records/edit/{{this._id}}">修改</a>
+            <button id="delete-btn" type="submit"
+              class="btn btn-outline-info d-inline-block">刪除</button>
+          </form>
+        </div>
+      </div>
     {{/each}}
-  </select>
-  <!-- yearSelected -->
-  <select class="d-inline-block form-select" id="year-select" name="yearSelected">
-    <option value="">所有年份</option>
-    {{#times 2020 2022}}
-      <option value="{{this}}" {{#ifCond ../yearSelected this}}selected{{/ifCond}}>
-        {{this}}年
-      </option>
-    {{/times}}
-  </select>
-  <!-- monthSelected -->
-  {{#ifCond yearSelected ''}}
-    {{else}}
-      <select class="d-inline-block form-select" id="month-select" name="monthSelected">
-        <option value="">所有月份</option>
-        {{#times 1 12}}
-          <option value="{{this}}" {{#ifCond ../../monthSelected this}}selected{{/ifCond}}>
-            {{this}}月
-          </option>
-        {{/times}}
-      </select>
-  {{/ifCond}}
-  <!-- keyword -->
-  <input id="search-input" class="form-control mr-sm-2" type="search" name="keyword"
-    value="{{keyword}}" placeholder="name" aria-label="Search">
-  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-</form>
-<h2 class="ml-5">總金額：{{totalAmount}}</h2>
-<ul>
-  {{#each records}}
-    <li>
-      <i class="{{this.categoryId.icon}}"></i> {{this.name}} {{this.date}} {{this.amount}}
-      <form action="/records/delete/{{this._id}}?_method=DELETE" method="POST"
-        class="d-inline-block">
-        <a class="btn btn-outline-primary" href="/records/edit/{{this._id}}">修改</a>
-        <button id="delete-btn" type="submit" class="btn btn-outline-danger">刪除</button>
-      </form>
-    </li>
-  {{/each}}
-</ul>
-<a class="btn btn-outline-primary ml-5" href="/records/new">新增支出</a>
+  </div>
+  <div class="text-center my-3">
+    <a class="btn btn-info" id="create-btn" href="/records/new">新增支出</a>
+  </div>
+</div>
 <script src="/javascripts/index-page.js"></script>
+<!-- {{#each records}}
+  <div class="record-content">
+    <div class="record-list" {{#ifOdd @index}} style="background-color: rgba(211, 211, 211, 0.329);"
+      {{/ifOdd}}>
+      <div class="record-icon-block text-center">
+        <i class="{{this.categoryId.icon}} border" id="record-icon"></i>
+      </div>
+      <div class="record-info-block">
+        <span id="record-name">{{this.name}}</span>
+        <span id="record-date">{{this.date}}</span>
+      </div>
+      <div class="record-amount-block text-right">
+        <span id="record-amount">{{this.amount}}</span>
+      </div>
+    </div>
+    <form action="/records/delete/{{this._id}}?_method=DELETE" method="POST" class="d-inline-block"
+      id="form-delete">
+      <a class=" d-inline-block btn btn-outline-info" id="edit-btn"
+        href="/records/edit/{{this._id}}">修改</a>
+      <button id="delete-btn" type="submit" class="btn btn-outline-info d-inline-block">刪除</button>
+    </form>
+  </div>
+{{/each}} -->

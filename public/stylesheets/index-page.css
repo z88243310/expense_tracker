@@ -1,0 +1,98 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:500,700);
+
+/* 主要容器 */
+.record-container {
+  max-width: 300px;
+  min-width: 150px;
+  min-height: 300px;
+}
+
+/* 分類 */
+/* 搜尋 */
+/* 總金額 */
+.total-block {
+  display: flex;
+}
+.total-name-block {
+  width: 25%;
+  height: 60px;
+}
+#total-name {
+  padding-left: 5px;
+  font-size: 16px;
+}
+.total-amount-block {
+  position: relative;
+  width: 75%;
+  height: 60px;
+  line-height: 60px;
+}
+#total-amount {
+  position: absolute;
+  font-size: 50px;
+  right: 5px;
+  margin: 0px;
+}
+
+/* 清單項目 */
+.record-list-container {
+  min-height: 250px;
+  width: 300px;
+}
+.record-list {
+  display: flex;
+  max-width: 300px;
+  min-width: 150px;
+}
+.record-list:nth-child(odd) {
+  background-color: rgba(211, 211, 211, 0.329);
+}
+.record-list:hover {
+  background-color: rgba(48, 165, 212, 0.123);
+}
+
+.list-icon-block {
+  height: 50px;
+  width: 60px;
+  line-height: 50px;
+  padding-left: 10px;
+}
+#list-icon {
+  font-size: 25px;
+  color: rgba(48, 166, 212, 0.39);
+}
+
+.list-info-block {
+  height: 50px;
+  width: 170px;
+  line-height: 25px;
+  display: flex;
+  flex-direction: column;
+}
+#info-date {
+  font-size: 12px;
+}
+
+.list-amount-block {
+  height: 50px;
+  width: 80px;
+  line-height: 50px;
+  padding-right: 20px;
+  position: relative;
+}
+
+/* 修改&刪除 */
+#form-delete {
+  position: absolute;
+  width: 80px;
+  height: 50px;
+  line-height: 50px;
+  right: -100px;
+}
+
+#delete-btn,
+#edit-btn {
+  border: 0;
+  padding: 0px 2px 0px 2px;
+  font-size: 12px;
+}
