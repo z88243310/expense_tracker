@@ -1,15 +1,19 @@
-<form action="/records/new" method="POST">
+<link rel="stylesheet" href="/stylesheets/new-page.css">
+<div class="mx-auto shadow new-container">
   <h1>請輸入你的支出</h1>
-  {{>message}}
-  <input type="text" placeholder="名稱" name="name" value="{{name}}">
-  <input type="date" placeholder="日期" name="date" value="{{date}}">
-  <select name="categoryId">
-    {{#each categories}}
-      <option value="{{this._id}}" {{#ifCond this._id ../categoryId}} selected {{/ifCond}}>
-        {{this.name}}
-      </option>
-    {{/each}}
-  </select>
-  <input type="number" placeholder="金額" name="amount" value="{{amount}}">
-  <button type="submit">新增支出</button>
-</form>
+  <form action="/records/new" method="POST">
+    {{>message}}
+    <input type="text" placeholder="名稱" name="name" value="{{name}}">
+    <input type="date" placeholder="日期" name="date" value="{{date}}">
+    <select name="categoryId">
+      <option value="">類別</option>
+      {{#each categories}}
+        <option value="{{this._id}}" {{#ifCond this._id ../categoryId}} selected {{/ifCond}}>
+          {{this.name}}
+        </option>
+      {{/each}}
+    </select>
+    <input type="number" placeholder="金額" name="amount" value="{{amount}}">
+    <button class="btn btn-info" type="submit">新增</button>
+  </form>
+</div>
