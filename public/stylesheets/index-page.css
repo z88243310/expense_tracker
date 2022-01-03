@@ -159,11 +159,36 @@
   padding: 0px 12px 6px 12px;
 }
 
-@media screen and (max-width: 600px) {
+/* 手機顯示 修改、刪除 */
+.edit-btn-phone-block,
+.form-delete-phone-block {
+  display: none;
+}
+
+@media screen and (max-width: 550px) {
   #form-delete {
-    /* /* visibility: hidden !important; */
+    /* visibility: hidden !important; */
     top: -9999px !important;
     left: -9999px !important;
     color: red;
+  }
+
+  .edit-btn-phone-block {
+    position: absolute;
+    left: 5px;
+    width: 5px;
+    margin-top: 10px;
+  }
+  #edit-btn-phone,
+  #delete-btn-phone {
+    font-size: 16px;
+    padding: 3px;
+    border: 0;
+  }
+  .form-delete-phone-block {
+    position: absolute;
+    right: 20px;
+    width: 5px;
+    margin-top: 10px;
   }
 }
