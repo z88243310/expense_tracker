@@ -1,7 +1,7 @@
 /* 主要容器 */
 .record-container {
-  max-width: 300px;
-  min-width: 150px;
+  max-width: 350px;
+  min-width: 280px;
   min-height: 300px;
   border-radius: 10px;
   border: 1px solid rgba(211, 211, 211, 0.329);
@@ -36,6 +36,7 @@
   width: 25%;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
+  padding: 6px 1%;
 }
 
 /* 分類 */
@@ -52,6 +53,8 @@
   border-radius: 5px;
   text-align: center;
   padding: 4px 5px;
+  min-width: 75px;
+  margin: auto 1px;
 }
 
 /* 總金額 */
@@ -80,13 +83,13 @@
 
 /* 清單項目 */
 .record-list-container {
-  min-height: 250px;
-  width: 300px;
+  min-height: 280px;
+  min-width: 200px;
 }
 .record-list {
   display: flex;
-  max-width: 300px;
-  min-width: 150px;
+  max-width: 500px;
+  min-width: 200px;
 }
 .record-list:nth-child(odd) {
   background-color: rgba(211, 211, 211, 0.329);
@@ -97,7 +100,8 @@
 
 .list-icon-block {
   height: 50px;
-  width: 60px;
+  width: 20%;
+  min-width: 50px;
   line-height: 50px;
   padding-left: 10px;
 }
@@ -108,21 +112,24 @@
 
 .list-info-block {
   height: 50px;
-  width: 170px;
-  line-height: 25px;
+  width: 55%;
+  min-width: 130px;
+  line-height: 22px;
   display: flex;
   flex-direction: column;
+  padding: 3px 0px;
 }
 #info-date {
   font-size: 12px;
 }
 
 .list-amount-block {
-  height: 50px;
-  width: 80px;
-  line-height: 50px;
-  padding-right: 20px;
   position: relative;
+  height: 50px;
+  width: 25%;
+  min-width: 80px;
+  line-height: 50px;
+  padding-right: 25px;
 }
 
 /* 修改&刪除 */
@@ -132,6 +139,7 @@
   height: 50px;
   line-height: 50px;
   right: -115px;
+  padding-right: 15px;
 }
 
 #delete-btn,
@@ -149,4 +157,13 @@
   line-height: 30px;
   width: 35%;
   padding: 0px 12px 6px 12px;
+}
+
+@media screen and (max-width: 600px) {
+  #form-delete {
+    /* /* visibility: hidden !important; */
+    top: -9999px !important;
+    left: -9999px !important;
+    color: red;
+  }
 }
