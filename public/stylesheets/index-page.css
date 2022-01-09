@@ -87,6 +87,7 @@
   min-width: 200px;
 }
 .record-list {
+  position: relative;
   display: flex;
   max-width: 500px;
   min-width: 200px;
@@ -175,7 +176,7 @@
 
   .edit-btn-phone-block {
     position: absolute;
-    left: 5px;
+    left: -25px;
     width: 5px;
     margin-top: 10px;
   }
@@ -187,7 +188,7 @@
   }
   .form-delete-phone-block {
     position: absolute;
-    right: 20px;
+    right: -10px;
     width: 5px;
     margin-top: 10px;
   }
