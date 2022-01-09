@@ -1,5 +1,5 @@
 /* 主要容器 */
-.new-container {
+.form-container {
   position: relative;
   max-width: 350px;
   min-width: 280px;
@@ -53,7 +53,7 @@ select {
 select {
   background-color: white;
 }
-button {
+.btn-info {
   position: relative;
   display: inline-block;
   transform: translateX(-50%);

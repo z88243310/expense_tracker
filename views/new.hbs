@@ -1,11 +1,11 @@
-<link rel="stylesheet" href="/stylesheets/new-page.css">
-<div class="mx-auto shadow new-container">
+<link rel="stylesheet" href="/stylesheets/edit-new-page.css">
+<div class="mx-auto shadow form-container">
   <form class="form-horizontal" action="/records/new" method="POST">
-    {{>message}}
     <div class="title-block">
       <div id="tag">*必要欄位</div>
       <div id="title">請輸入你的支出</div>
     </div>
+    {{>message}}
     <div class="form-group">
       <label for="name">名稱*：</label>
       <input type="text" placeholder="輸入名稱" id="name" name="name" value="{{name}}">

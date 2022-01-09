@@ -1,18 +1,35 @@
-<link rel="stylesheet" href="/stylesheets/edit-page.css">
-<div class="mx-auto shadow edit-container">
-  <h1>請輸入你的支出</h1>
-  <form action="/records/edit/{{_id}}?_method=PUT" method="POST">
+<link rel="stylesheet" href="/stylesheets/edit-new-page.css">
+<div class="mx-auto shadow form-container">
+  <form class="form-horizontal" action="/records/edit/{{_id}}?_method=PUT" method="POST">
     {{>message}}
-    <input type="text" placeholder="名稱" name="name" value="{{name}}">
-    <input type="date" placeholder="日期" name="date" value="{{date}}">
-    <select name="categoryId">
-      {{#each categories}}
-        <option value="{{this._id}}" {{#ifCond this._id ../categoryId}} selected {{/ifCond}}>
-          {{this.name}}
-        </option>
-      {{/each}}
-    </select>
-    <input type="number" placeholder="金額" name="amount" value="{{amount}}">
+    <div class="title-block">
+      <div id="tag">*必要欄位</div>
+      <div id="title">請修改你的支出</div>
+    </div>
+    <div class="form-group">
+      <label for="name">名稱*：</label>
+      <input type="text" placeholder="輸入名稱" id="name" name="name" value="{{name}}">
+    </div>
+    <div class="form-group">
+      <label for="date">日期*：</label>
+      <input type="date" placeholder="選擇日期" id="date" name="date" value="{{date}}" min="2020-01-01"
+        max="2030-12-31">
+    </div>
+    <div class="form-group">
+      <label for="categoryId">類別*：</label>
+      <select id="categoryId" name="categoryId">
+        <option value="">選擇類別</option>
+        {{#each categories}}
+          <option value="{{this._id}}" {{#ifCond this._id ../categoryId}} selected {{/ifCond}}>
+            {{this.name}}
+          </option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="amount">金額*：</label>
+      <input type="number" placeholder="輸入金額" id="amount" name="amount" value="{{amount}}">
+    </div>
     <button class="btn btn-info" type="submit">修改</button>
   </form>
 </div>
