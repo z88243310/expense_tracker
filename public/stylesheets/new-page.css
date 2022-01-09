@@ -7,34 +7,53 @@
   border-radius: 10px;
   border: 1px solid rgba(211, 211, 211, 0.329);
 }
-.new-container > h1 {
-  position: relative;
-  display: inline-block;
-  transform: translateX(-50%);
-  left: 50%;
-  margin: 30px auto 10px auto;
-  font-size: 28px;
+
+.title-block {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px auto 35px auto;
+  line-height: 12px;
 }
 
-.new-container > form {
-  margin: 15px;
+.title-block #tag {
+  flex-basis: 0.25;
+  font-size: 12px;
+  margin-top: 15px;
+}
+.title-block #title {
+  flex-grow: 1;
+  min-width: 200px;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 18px;
 }
 
-.new-container > form > input,
+form {
+  margin: 15px 25px 20px 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+label {
+  flex-basis: 0.25;
+}
+
+input,
 select {
-  width: 75%;
+  flex-grow: 1;
+  min-width: 200px;
   height: 35px;
-  position: relative;
-  display: inline-block;
-  transform: translateX(-50%);
-  left: 50%;
-  margin: 15px auto;
+  margin: 8px 15px;
   border: 1px solid rgba(211, 211, 211, 0.808);
 }
-.new-container > form > select {
+select {
   background-color: white;
 }
-.new-container > form > button {
+button {
   position: relative;
   display: inline-block;
   transform: translateX(-50%);
