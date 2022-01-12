@@ -166,7 +166,7 @@
   display: none;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 549px) {
   #form-delete {
     /* visibility: hidden !important; */
     top: -9999px !important;
