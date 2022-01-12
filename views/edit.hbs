@@ -8,16 +8,16 @@
     </div>
     <div class="form-group">
       <label for="name">名稱*：</label>
-      <input type="text" placeholder="輸入名稱" id="name" name="name" value="{{name}}">
+      <input type="text" placeholder="輸入名稱" id="name" name="name" value="{{name}}" required>
     </div>
     <div class="form-group">
       <label for="date">日期*：</label>
       <input type="date" placeholder="選擇日期" id="date" name="date" value="{{date}}" min="2020-01-01"
-        max="2030-12-31">
+        max="2030-12-31" required>
     </div>
     <div class="form-group">
       <label for="categoryId">類別*：</label>
-      <select id="categoryId" name="categoryId">
+      <select id="categoryId" name="categoryId" required>
         <option value="">選擇類別</option>
         {{#each categories}}
           <option value="{{this._id}}" {{#ifCond this._id ../categoryId}} selected {{/ifCond}}>
@@ -28,7 +28,7 @@
     </div>
     <div class="form-group">
       <label for="amount">金額*：</label>
-      <input type="number" placeholder="輸入金額" id="amount" name="amount" value="{{amount}}">
+      <input type="number" placeholder="輸入金額" id="amount" name="amount" value="{{amount}}" required>
     </div>
     <button class="btn btn-info" type="submit">修改</button>
   </form>
