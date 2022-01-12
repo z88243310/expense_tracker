@@ -6,6 +6,7 @@ const Category = require('../../models/category')
 const getFormatDate = require('../../tools/getFormatDate')
 const getTotalAmount = require('../../tools/getTotalAmount')
 const getAllYears = require('../../tools/getAllYears')
+const getAllMonths = require('../../tools/getAllMonths')
 
 router.get('/', async (req, res) => {
   const userId = req.user._id
@@ -42,7 +43,8 @@ router.get('/', async (req, res) => {
     getFormatDate(records)
     const totalAmount = getTotalAmount(records)
     const allYears = getAllYears(allRecords)
-    return res.render('index', { records, categories, totalAmount, categoryIdSelected, keyword, monthSelected, yearSelected, allYears })
+    const allMonths = getAllMonths(records)
+    return res.render('index', { records, categories, totalAmount, categoryIdSelected, keyword, monthSelected, yearSelected, allYears, allMonths })
   } catch (error) {
     return console.log(error)
   }

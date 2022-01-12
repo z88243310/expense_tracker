@@ -26,14 +26,11 @@
       <select class="d-inline-block form-select" id="month-select" name="monthSelected" {{#ifCond
         yearSelected '' }} disabled {{/ifCond}}>
         <option value="">所有月份</option>
-        {{#ifCond yearSelected '' }}
-          {{else}}
-            {{#times 1 12}}
-              <option value="{{this}}" {{#ifCond ../../monthSelected this}}selected{{/ifCond}}>
-                {{this}}月
-              </option>
-            {{/times}}
-        {{/ifCond}}
+        {{#each allMonths}}
+          <option value="{{this}}" {{#ifCond ../monthSelected this}}selected{{/ifCond}}>
+            {{this}}月
+          </option>
+        {{/each}}
       </select>
     </div>
     <!-- keyword -->
