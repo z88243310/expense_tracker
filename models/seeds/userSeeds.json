@@ -1,14 +1,14 @@
 [
   {
-    "name": "Daddy",
+    "name": "廣志",
     "email": "user1@example.com",
     "password": "12345678",
-    "recordId": [1, 3, 5, 7, 9]
+    "recordId": [1,2,3,5]
   },
   {
-    "name": "Mommy",
+    "name": "小新",
     "email": "user2@example.com",
     "password": "12345678",
-    "recordId": [2, 4, 6, 8, 10]
+    "recordId": [4]
   }
 ]

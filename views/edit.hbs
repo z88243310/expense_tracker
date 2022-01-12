@@ -19,7 +19,7 @@
       <label for="categoryId">類別*：</label>
       <select id="categoryId" name="categoryId" required>
         <option value="">選擇類別</option>
-        {{#each categories}}
+        {{#each categories}} 
           <option value="{{this._id}}" {{#ifCond this._id ../categoryId}} selected {{/ifCond}}>
             {{this.name}}
           </option>
