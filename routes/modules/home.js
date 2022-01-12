@@ -5,6 +5,7 @@ const Record = require('../../models/record')
 const Category = require('../../models/category')
 const getFormatDate = require('../../tools/getFormatDate')
 const getTotalAmount = require('../../tools/getTotalAmount')
+const getAllYears = require('../../tools/getAllYears')
 
 router.get('/', async (req, res) => {
   const userId = req.user._id
@@ -35,11 +36,13 @@ router.get('/', async (req, res) => {
         $lte: new Date(year.end, monthSelected)
       }
     const records = await Record.find(searchKey).populate('categoryId').sort({ date: 'desc' }).lean()
+    const allRecords = await Record.find({ userId }).lean()
 
     // 調整時間格式 > 計算總金額 > 渲染畫面
     getFormatDate(records)
     const totalAmount = getTotalAmount(records)
-    return res.render('index', { records, categories, totalAmount, categoryIdSelected, keyword, monthSelected, yearSelected })
+    const allYears = getAllYears(allRecords)
+    return res.render('index', { records, categories, totalAmount, categoryIdSelected, keyword, monthSelected, yearSelected, allYears })
   } catch (error) {
     return console.log(error)
   }
