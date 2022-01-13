@@ -6,6 +6,7 @@ const Record = require('../../models/record')
 const Category = require('../../models/category')
 
 const getFormatDate = require('../../tools/getFormatDate')
+const moment = require('moment')
 
 // 新增頁面
 router.get('/new', async (req, res) => {
@@ -24,6 +25,9 @@ router.post('/new', async (req, res) => {
   const errors = []
   if (!name || !date || !amount || !categoryId) {
     errors.push({ message: '所有欄位都是必填' })
+  }
+  if (moment().format('YYYY-MM-DD') < date) {
+    errors.push({ message: '不能輸入未來日期' })
   }
   // 符合以上狀態，直接回傳錯誤
   try {
@@ -60,6 +64,9 @@ router.put('/edit/:id', async (req, res) => {
   const errors = []
   if (!name || !date || !amount || !categoryId) {
     errors.push({ message: '所有欄位都是必填' })
+  }
+  if (moment().format('YYYY-MM-DD') < date) {
+    errors.push({ message: '不能輸入未來日期' })
   }
   // 符合以上狀態，直接回傳錯誤
   try {
