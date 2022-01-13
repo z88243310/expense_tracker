@@ -7,11 +7,20 @@ const searchBtn = document.querySelector('#search-btn')
 const recordLists = document.querySelectorAll('.record-list')
 const formDeletePhone = document.querySelector('#form-delete-phone')
 const formDelete = document.querySelector('#form-delete')
+const monthSelect = document.querySelector('#month-select')
+const yearSelect = document.querySelector('#year-select')
 
 // 當 form Select 改變時，提交表單
 formSelects.forEach(formSelect => {
   formSelect.addEventListener('change', function onFormSelectChanged(event) {
     const target = event.target
+    if (target.matches('#year-select')) {
+      const children = Array.from(monthSelect.children)
+      children.forEach((option, index) => {
+        if (index === 0) return
+        option.remove()
+      })
+    }
     target.parentElement.parentElement.submit()
   })
 })
