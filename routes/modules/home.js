@@ -43,7 +43,7 @@ router.get('/', async (req, res) => {
     getFormatDate(records)
     const totalAmount = getTotalAmount(records)
     const allYears = getAllYears(allRecords)
-    const allMonths = getAllMonths(records)
+    const allMonths = getAllMonths(allRecords, yearSelected)
     return res.render('index', { records, categories, totalAmount, categoryIdSelected, keyword, monthSelected, yearSelected, allYears, allMonths })
   } catch (error) {
     return console.log(error)
