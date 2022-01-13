@@ -12,14 +12,14 @@
     </div>
     <div class="form-group">
       <label for="date">日期*：</label>
-      <input type="date" placeholder="選擇日期" id="date" name="date" value="{{date}}" min="2020-01-01"
+      <input type="date" placeholder="選擇日期" id="date" name="date" value="{{date}}" min="2010-01-01"
         max="2030-12-31" required>
     </div>
     <div class="form-group">
       <label for="categoryId">類別*：</label>
       <select id="categoryId" name="categoryId" required>
         <option value="">選擇類別</option>
-        {{#each categories}} 
+        {{#each categories}}
           <option value="{{this._id}}" {{#ifCond this._id ../categoryId}} selected {{/ifCond}}>
             {{this.name}}
           </option>
@@ -33,3 +33,4 @@
     <button class="btn btn-info" type="submit">修改</button>
   </form>
 </div>
+<script src="/javascripts/edit-new-page.js"></script>
