@@ -1,12 +1,10 @@
 const formSelects = document.querySelectorAll('.form-select')
 const searchInput = document.querySelector('#search-input')
-const deleteButtons = document.querySelectorAll('#delete-btn')
+const deleteButtons = document.querySelectorAll('.delete-button')
 const deleteButtonPhones = document.querySelectorAll('#delete-btn-phone')
 const searchIcon = document.querySelector('#search-icon')
 const searchBtn = document.querySelector('#search-btn')
 const recordLists = document.querySelectorAll('.record-list')
-const formDeletePhone = document.querySelector('#form-delete-phone')
-const formDelete = document.querySelector('#form-delete')
 const monthSelect = document.querySelector('#month-select')
 const yearSelect = document.querySelector('#year-select')
 
@@ -35,16 +33,11 @@ searchInput.addEventListener('keyup', function onSearchInputKeyUP(event) {
 deleteButtons.forEach(deleteButton => {
   deleteButton.addEventListener('click', function onDeleteButtonClicked(event) {
     event.preventDefault()
-    if (confirm('確定刪除嗎?')) formDelete.submit()
+    const target = event.target
+    if (confirm('確定刪除嗎?')) target.form.submit()
   })
 })
-// 刪除再次確認
-deleteButtonPhones.forEach(deleteButtonPhone => {
-  deleteButtonPhone.addEventListener('click', function onDeleteButtonClicked(event) {
-    event.preventDefault()
-    if (confirm('確定刪除嗎?')) formDeletePhone.submit()
-  })
-})
+
 // 點擊 X，清除輸入文字
 searchIcon.addEventListener('click', function onSearchIconClicked(event) {
   searchInput.value = ''

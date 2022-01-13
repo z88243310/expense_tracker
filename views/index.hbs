@@ -56,14 +56,15 @@
   <div class="record-list-container">
     {{#each records}}
       <div class="record-list">
-        <div class="edit-btn-phone-block"><a class=" d-inline-block btn btn-outline-info"
-            id="edit-btn-phone" href="/records/edit/{{this._id}}"><i class="far fa-edit"></i></a>
+        <div class="edit-btn-phone-block"><a
+            class=" d-inline-block btn btn-outline-info far fa-edit" id="edit-btn-phone"
+            href="/records/edit/{{this._id}}"></a>
         </div>
         <div class="form-delete-phone-block">
           <form action="/records/delete/{{this._id}}?_method=DELETE" method="POST"
             class="d-inline-block" id="form-delete-phone">
             <button id="delete-btn-phone" type="submit"
-              class="btn btn-outline-info d-inline-block"><i class="far fa-trash-alt"></i></button>
+              class="btn btn-outline-info d-inline-block far fa-trash-alt delete-button"></button>
           </form>
         </div>
         <div class="list-icon-block text-center">
@@ -80,7 +81,7 @@
             <a class=" d-inline-block btn btn-outline-info" id="edit-btn"
               href="/records/edit/{{this._id}}">修改</a>
             <button id="delete-btn" type="submit"
-              class="btn btn-outline-info d-inline-block">刪除</button>
+              class="btn btn-outline-info d-inline-block delete-button">刪除</button>
           </form>
         </div>
       </div>
