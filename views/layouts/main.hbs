@@ -16,7 +16,7 @@
 
 <body class="bg-light">
   <header>
-    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-light fixed-top" style="background-color: #e3f2fd;">
       <a class="navbar-brand" href="/">
         {{#if user}}{{user.name}}'s{{/if}} 私房錢
       </a>
@@ -27,7 +27,7 @@
       {{/if}}
     </nav>
   </header>
-  <div class="container mt-5" style="padding-right:35px;padding-left:35px;">
+  <div class="container" style="margin-top:100px;padding-right:35px;padding-left:35px;">
     {{{body}}}
   </div>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
