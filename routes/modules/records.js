@@ -89,7 +89,7 @@ router.delete('/delete/:id', async (req, res) => {
   const userId = req.user._id
   try {
     await Record.deleteOne({ _id, userId })
-    return res.redirect('/')
+    return res.redirect(req.headers.referer)
   } catch (error) {
     return console.log(error)
   }
