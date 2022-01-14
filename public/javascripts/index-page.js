@@ -34,7 +34,17 @@ deleteButtons.forEach(deleteButton => {
   deleteButton.addEventListener('click', function onDeleteButtonClicked(event) {
     event.preventDefault()
     const target = event.target
-    if (confirm('確定刪除嗎?')) target.form.submit()
+
+    // 取得項目值
+    const recordList = target.closest('.record-list')
+    const name = recordList.querySelector('#info-name').innerText
+    const date = recordList.querySelector('#info-date').innerText
+    const category = recordList.querySelector('.list-icon-block i').dataset.name
+    const amount = recordList.querySelector('#list-amount').innerText
+    // 提示訊息
+    const info = `名稱：${name}\n日期：${date}\n類別：${category}\n金額：${amount}\n\n確定刪除嗎?`
+
+    if (confirm(info)) target.form.submit()
   })
 })
 
