@@ -9,6 +9,12 @@ const getAllYears = require('../../tools/getAllYears')
 const getAllMonths = require('../../tools/getAllMonths')
 
 router.get('/', async (req, res) => {
+  // 設定 edit_msg , delete_msg訊息
+  res.locals.edit_msg = req.flash('edit_msg')
+  res.locals.edit_id = req.flash('edit_id')
+  res.locals.delete_msg = req.flash('delete_msg')
+  res.locals.delete_id = req.flash('delete_id')
+
   const userId = req.user._id
   // search keyword & categoryId selected
   const keyword = req.query.keyword ? req.query.keyword.trim() : ''

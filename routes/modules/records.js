@@ -44,13 +44,14 @@ router.post('/new', async (req, res) => {
 
 // 編輯頁面
 router.get('/edit/:id', async (req, res) => {
+  const referer = req.headers.referer
   const _id = req.params.id
   const userId = req.user._id
   try {
     const categories = await Category.find().lean()
     const record = await Record.findOne({ _id, userId }).lean()
     getFormatDate(record)
-    return res.render('edit', { ...record, _id, categories })
+    return res.render('edit', { ...record, _id, categories, referer })
   } catch (error) {
     return console.log(error)
   }
@@ -60,7 +61,7 @@ router.get('/edit/:id', async (req, res) => {
 router.put('/edit/:id', async (req, res) => {
   const _id = req.params.id
   const userId = req.user._id
-  const { name, date, categoryId, amount } = req.body
+  const { name, date, categoryId, amount, referer } = req.body
   const errors = []
   if (!name || !date || !amount || !categoryId) {
     errors.push({ message: '所有欄位都是必填' })
@@ -72,12 +73,15 @@ router.put('/edit/:id', async (req, res) => {
   try {
     if (errors.length) {
       const categories = await Category.find().lean()
-      return res.render('edit', { errors, _id, name, date, amount, categoryId, categories })
+      return res.render('edit', { errors, _id, name, date, amount, categoryId, categories, referer })
     }
     //  找出紀錄 覆寫存檔
     const record = await Record.findOne({ _id, userId })
     await Object.assign(record, req.body).save()
-    return res.redirect('/')
+    // 傳遞id
+    req.flash('edit_msg', `${name} 修改成功`)
+    req.flash('edit_id', _id)
+    return res.redirect(referer)
   } catch (error) {
     return console.log(error)
   }
@@ -85,10 +89,14 @@ router.put('/edit/:id', async (req, res) => {
 
 // 刪除資料
 router.delete('/delete/:id', async (req, res) => {
+  const { name } = req.body
   const _id = req.params.id
   const userId = req.user._id
   try {
     await Record.deleteOne({ _id, userId })
+    // 傳遞id
+    req.flash('delete_msg', `${name} 刪除成功`)
+    req.flash('delete_id', _id)
     return res.redirect(req.headers.referer)
   } catch (error) {
     return console.log(error)

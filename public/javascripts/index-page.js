@@ -8,6 +8,19 @@ const recordLists = document.querySelectorAll('.record-list')
 const monthSelect = document.querySelector('#month-select')
 const yearSelect = document.querySelector('#year-select')
 
+// editAlert 出現才執行 > 修改後動畫顯示
+const editAlert = document.querySelector('#edit-alert')
+if (editAlert !== null) {
+  const editId = editAlert.dataset.edit_id
+  const editBtns = document.querySelectorAll('#edit-btn')
+  editBtns.forEach(editBtn => {
+    if (editBtn.href.includes(editId)) {
+      const recordList = editBtn.closest('.record-list')
+      recordList.classList.add('record-list-edit-animation')
+    }
+  })
+}
+
 // 當 form Select 改變時，提交表單
 formSelects.forEach(formSelect => {
   formSelect.addEventListener('change', function onFormSelectChanged(event) {
@@ -43,8 +56,15 @@ deleteButtons.forEach(deleteButton => {
     const amount = recordList.querySelector('#list-amount').innerText
     // 提示訊息
     const info = `名稱：${name}\n日期：${date}\n類別：${category}\n金額：${amount}\n\n確定刪除嗎?`
-
-    if (confirm(info)) target.form.submit()
+    recordList.classList.remove('record-list-delete-animation')
+    if (confirm(info)) {
+      // 動畫顯示後送出刪除
+      recordList.classList.add('record-list-delete-animation')
+      setTimeout(() => {
+        recordList.classList.add('d-none')
+        target.form.submit()
+      }, 200)
+    }
   })
 })
 

@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="/stylesheets/index-page.css">
+{{>message}}
 <div class="mx-auto shadow record-container">
   <!-- 篩選條件 -->
-  <form id="form-search" action="/" method="get">
+  <form id="form-search" action="/" method="get" data-edit_msg="{{edit_msg}}">
     <div class="form-select-block">
       <!-- categorySelected -->
       <select class="d-inline-block form-select" id="category-select" name="categoryIdSelected">
@@ -63,6 +64,7 @@
         <div class="form-delete-phone-block">
           <form action="/records/delete/{{this._id}}?_method=DELETE" method="POST"
             class="d-inline-block" id="form-delete-phone">
+            <input type="hidden" name="name" value="{{this.name}}">
             <button id="delete-btn-phone" type="submit"
               class="btn btn-outline-info d-inline-block far fa-trash-alt delete-button"></button>
           </form>
@@ -81,6 +83,7 @@
             class="d-inline-block" id="form-delete">
             <a class=" d-inline-block btn btn-outline-info" id="edit-btn"
               href="/records/edit/{{this._id}}">修改</a>
+            <input type="hidden" name="name" value="{{this.name}}">
             <button id="delete-btn" type="submit"
               class="btn btn-outline-info d-inline-block delete-button">刪除</button>
           </form>

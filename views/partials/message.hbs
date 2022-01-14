@@ -32,3 +32,18 @@
     </button>
   </div>
 {{/if}}
+{{#if edit_msg}}
+  <div id="edit-alert"
+    class="alert alert-success alert-dismissible fade show fixed-top mt-5 mx-auto text-center"
+    role="alert" style="height: 40px; line-height: 40px; padding:0px 20px; max-width: 300px;"
+    data-edit_id="{{edit_id}}">
+    {{ edit_msg }}
+  </div>
+{{/if}}
+{{#if delete_msg}}
+  <div class="alert alert-danger alert-dismissible fade show fixed-top mt-5 mx-auto text-center"
+    role="alert" style="height: 40px; line-height: 40px; padding:0px 20px; max-width: 300px;"
+    data-edit_id="{{delete_id}}">
+    {{ delete_msg }}
+  </div>
+{{/if}}
