@@ -23,27 +23,17 @@ router.get('/', async (req, res) => {
   const categoryIdSelected = req.query.categoryIdSelected || ''
   const monthSelected = req.query.monthSelected || ''
   const yearSelected = req.query.yearSelected || ''
-  const year = { start: 1900, end: 3000 }
-
   try {
     const categories = await Category.find().lean()
     // 列入篩選條件
-    const searchKey = { userId }
-    if (keyword) searchKey.name = { $regex: keyword }
-    if (categoryIdSelected) searchKey.categoryId = categoryIdSelected
-    if (yearSelected) {
-      year.start = yearSelected
-      year.end = yearSelected
-      searchKey.date = {
-        $gte: new Date(year.start, 0),
-        $lte: new Date(year.end, 12)
-      }
+    const searchKey = {
+      userId,
+      name: { $regex: keyword },
+      date: { $regex: `${yearSelected}-${monthSelected ? monthSelected.toString().padStart(2, '0') : ''}` }
     }
-    if (monthSelected)
-      searchKey.date = {
-        $gte: new Date(year.start, monthSelected - 1),
-        $lte: new Date(year.end, monthSelected)
-      }
+    if (categoryIdSelected) searchKey.categoryId = categoryIdSelected
+
+    // filter data
     const records = await Record.find(searchKey).populate('categoryId').sort({ date: 'desc' }).lean()
     const allRecords = await Record.find({ userId }).lean()
 
