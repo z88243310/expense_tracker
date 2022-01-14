@@ -10,9 +10,10 @@ const moment = require('moment')
 
 // 新增頁面
 router.get('/new', async (req, res) => {
+  const referer = req.headers.referer
   try {
     const categories = await Category.find().lean()
-    return res.render('new', { categories })
+    return res.render('new', { categories, referer })
   } catch (error) {
     return console.log(error)
   }
@@ -21,7 +22,7 @@ router.get('/new', async (req, res) => {
 // 新增
 router.post('/new', async (req, res) => {
   const userId = req.user._id
-  const { name, date, categoryId, amount } = req.body
+  const { name, date, categoryId, amount, referer } = req.body
   const errors = []
   if (!name || !date || !amount || !categoryId) {
     errors.push({ message: '所有欄位都是必填' })
@@ -33,10 +34,10 @@ router.post('/new', async (req, res) => {
   try {
     if (errors.length) {
       const categories = await Category.find().lean()
-      return res.render('new', { errors, name, date, amount, categoryId, categories })
+      return res.render('new', { errors, name, date, amount, categoryId, categories, referer })
     }
     await Record.create({ name, date, amount, userId, categoryId })
-    return res.redirect('/')
+    return res.redirect(referer)
   } catch (error) {
     return console.log(error)
   }
