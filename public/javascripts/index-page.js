@@ -21,6 +21,19 @@ if (editAlert !== null) {
   })
 }
 
+// createAlert 出現才執行 > 修改後動畫顯示
+const createAlert = document.querySelector('#create-alert')
+if (createAlert !== null) {
+  const createId = createAlert.dataset.create_id
+  const editBtns = document.querySelectorAll('#edit-btn')
+  editBtns.forEach(editBtn => {
+    if (editBtn.href.includes(createId)) {
+      const recordList = editBtn.closest('.record-list')
+      recordList.classList.add('record-list-create-animation')
+    }
+  })
+}
+
 // 當 form Select 改變時，提交表單
 formSelects.forEach(formSelect => {
   formSelect.addEventListener('change', function onFormSelectChanged(event) {

@@ -47,10 +47,11 @@
     {{ delete_msg }}
   </div>
 {{/if}}
-{{#if new_msg}}
-  <div class="alert alert-info alert-dismissible fade show fixed-top mt-5 mx-auto text-center"
+{{#if create_msg}}
+  <div id="create-alert"
+    class="alert alert-info alert-dismissible fade show fixed-top mt-5 mx-auto text-center"
     role="alert" style="height: 40px; line-height: 40px; padding:0px 20px; max-width: 300px;"
-    data-new_id="{{new_id}}">
-    {{ new_msg }}
+    data-create_id="{{create_id}}">
+    {{ create_msg }}
   </div>
 {{/if}}

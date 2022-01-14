@@ -83,6 +83,22 @@
 }
 
 /* 清單項目 */
+@keyframes create-animation {
+  0% {
+    background-color: #d1ecf1;
+    opacity: 0;
+    left: -30px;
+  }
+  40% {
+    background-color: #d1ecf1;
+    opacity: 1;
+  }
+  60% {
+    background-color: #d1ecf1;
+    opacity: 1;
+    left: 0px;
+  }
+}
 @keyframes edit-animation {
   0% {
     background-color: #d4edda;
@@ -109,6 +125,10 @@
     opacity: 0;
     left: 30px;
   }
+}
+.record-list-create-animation {
+  animation: create-animation;
+  animation-duration: 0.5s;
 }
 .record-list-edit-animation {
   animation: edit-animation;

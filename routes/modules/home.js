@@ -14,8 +14,8 @@ router.get('/', async (req, res) => {
   res.locals.edit_id = req.flash('edit_id')
   res.locals.delete_msg = req.flash('delete_msg')
   res.locals.delete_id = req.flash('delete_id')
-  res.locals.new_msg = req.flash('new_msg')
-  res.locals.new_id = req.flash('new_id')
+  res.locals.create_msg = req.flash('create_msg')
+  res.locals.create_id = req.flash('create_id')
 
   const userId = req.user._id
   // search keyword & categoryId selected
