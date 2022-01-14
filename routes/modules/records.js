@@ -36,7 +36,10 @@ router.post('/new', async (req, res) => {
       const categories = await Category.find().lean()
       return res.render('new', { errors, name, date, amount, categoryId, categories, referer })
     }
-    await Record.create({ name, date, amount, userId, categoryId })
+    const record = await Record.create({ name, date, amount, userId, categoryId })
+    // 傳遞id
+    req.flash('new_msg', `${name} 新增成功`)
+    req.flash('new_id', record._id)
     return res.redirect(referer)
   } catch (error) {
     return console.log(error)
