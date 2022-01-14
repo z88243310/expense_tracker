@@ -74,6 +74,7 @@ deleteButtons.forEach(deleteButton => {
       // 動畫顯示後送出刪除
       recordList.classList.add('record-list-delete-animation')
       setTimeout(() => {
+        recordList.classList.add('d-none')
         target.form.submit()
       }, 200)
     }
