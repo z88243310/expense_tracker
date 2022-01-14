@@ -116,11 +116,12 @@
   }
 }
 @keyframes delete-animation {
-  0% {
+  from {
     background-color: #ebbcbc;
     opacity: 1;
+    left: 0px;
   }
-  100% {
+  to {
     background-color: #ebbcbc;
     opacity: 0;
     left: 30px;
