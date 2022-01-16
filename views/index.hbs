@@ -56,7 +56,7 @@
   <!-- 清單 -->
   <div class="record-list-container">
     {{#each records}}
-      <div class="record-list">
+      <div class="record-list" tabindex="0" data-id="{{@index}}">
         <div class="edit-btn-phone-block"><a
             class=" d-inline-block btn btn-outline-info far fa-edit" id="edit-btn-phone"
             href="/records/edit/{{this._id}}"></a>

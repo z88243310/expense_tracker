@@ -87,57 +87,46 @@
   0% {
     background-color: #d1ecf1;
     opacity: 0;
-    left: -30px;
+    transform: translateX(-30px);
   }
-  40% {
+  50% {
     background-color: #d1ecf1;
     opacity: 1;
-  }
-  60% {
-    background-color: #d1ecf1;
-    opacity: 1;
-    left: 0px;
+    transform: translateX(0px);
   }
 }
 @keyframes edit-animation {
   0% {
     background-color: #d4edda;
     opacity: 0;
-    left: -30px;
+    transform: translateX(-30px);
   }
-  40% {
+  50% {
     background-color: #d4edda;
     opacity: 1;
-  }
-  60% {
-    background-color: #d4edda;
-    opacity: 1;
-    left: 0px;
+    transform: translateX(0px);
   }
 }
 @keyframes delete-animation {
-  from {
+  0% {
     background-color: #ebbcbc;
     opacity: 1;
-    left: 0px;
+    transform: translateX(0px);
   }
-  to {
+  100% {
     background-color: #ebbcbc;
     opacity: 0;
-    left: 30px;
+    transform: translateX(30px);
   }
 }
 .record-list-create-animation {
-  animation: create-animation;
-  animation-duration: 0.5s;
+  animation: create-animation 1s none;
 }
 .record-list-edit-animation {
-  animation: edit-animation;
-  animation-duration: 0.5s;
+  animation: edit-animation 1s none;
 }
 .record-list-delete-animation {
-  animation: delete-animation;
-  animation-duration: 0.5s;
+  animation: delete-animation 0.5s forwards;
 }
 
 .record-list-container {
@@ -232,11 +221,18 @@
     color: red;
   }
 
-  .edit-btn-phone-block {
+  .edit-btn-phone-block,
+  .form-delete-phone-block {
     position: absolute;
-    left: -25px;
     width: 5px;
     margin-top: 10px;
+  }
+  .edit-btn-phone-block {
+    left: -25px;
+  }
+
+  .form-delete-phone-block {
+    right: -10px;
   }
   #edit-btn-phone,
   #delete-btn-phone {
@@ -244,10 +240,31 @@
     padding: 6px 3px;
     border: 0;
   }
-  .form-delete-phone-block {
-    position: absolute;
-    right: -10px;
-    width: 5px;
-    margin-top: 10px;
+
+  /* show edit, delete button and animation */
+  @keyframes button-show {
+    0% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  .record-list:focus {
+    outline: none;
+  }
+  .record-list:focus .edit-btn-phone-block,
+  .record-list:focus .form-delete-phone-block {
+    display: inline-block;
+    animation: button-show 3s forwards;
+  }
+  .edit-btn-phone-block:hover,
+  .form-delete-phone-block:hover {
+    display: inline-block;
   }
 }

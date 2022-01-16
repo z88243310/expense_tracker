@@ -73,10 +73,7 @@ deleteButtons.forEach(deleteButton => {
     if (confirm(info)) {
       // 動畫顯示後送出刪除
       recordList.classList.add('record-list-delete-animation')
-      setTimeout(() => {
-        recordList.classList.add('d-none')
-        target.form.submit()
-      }, 200)
+      target.form.submit()
     }
   })
 })
@@ -87,35 +84,20 @@ searchIcon.addEventListener('click', function onSearchIconClicked(event) {
   searchBtn.form.submit()
 })
 
-// record-list show edit and delete button
-let timer
+// record-list refocus to show edit and delete button animation
+let activeElementId
 recordLists.forEach(recordList => {
   recordList.addEventListener('click', function onRecordListClicked(event) {
-    // 螢幕 550px 以下
-    if (document.body.clientWidth < 550) {
-      clearTimeout(timer)
-      const editDisplay = this.querySelector('.edit-btn-phone-block')
-      const deleteDisplay = this.querySelector('.form-delete-phone-block')
+    const target = event.target
+    const recordListClicked = target.closest('.record-list')
+    const nowElementId = recordListClicked.dataset.id
 
-      // 同個項目，直接清除按鈕
-      if (editDisplay.style.display === 'block') {
-        editDisplay.style.display = 'none'
-        deleteDisplay.style.display = 'none'
-      }
-
-      // 不同項目，清除全部按鈕，顯示按鈕在項目上，一段時間後自動清除
-      else {
-        recordLists.forEach(recordList => {
-          recordList.querySelector('.edit-btn-phone-block').style.display = 'none'
-          recordList.querySelector('.form-delete-phone-block').style.display = 'none'
-        })
-        this.querySelector('.edit-btn-phone-block').style.display = 'block'
-        this.querySelector('.form-delete-phone-block').style.display = 'block'
-        timer = setTimeout(() => {
-          this.querySelector('.edit-btn-phone-block').style.display = 'none'
-          this.querySelector('.form-delete-phone-block').style.display = 'none'
-        }, 3000)
-      }
+    // 跟上次同一個元素，則重新聚焦
+    if (activeElementId === nowElementId) {
+      recordListClicked.blur()
+      recordListClicked.focus()
     }
+    // 紀錄當次 id，下次確認是否為同一元素
+    activeElementId = document.activeElement.dataset.id
   })
 })
