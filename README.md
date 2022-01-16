@@ -155,7 +155,7 @@ FACEBOOK_CALLBACK="https 本地外網網址"/auth/facebook/callback
 3. 加入環境變數後，於 [Facebook developer app](https://developers.facebook.com/apps) 設定中 <有效的 OAuth 重新導向 URI> 項目，也需輸入相同 FACEBOOK_CALLBACK 網址
 4. [Facebook developer app](https://developers.facebook.com/apps) 權限與功能 > 開啟 public_profile 權限，即可正常運作
 
-   11.快速清除資料庫
+11.快速清除資料庫
 
 ```text
 npm run dropDB
@@ -190,4 +190,4 @@ npm run dropDB
 - passport-facebook 3.0.0
 - passport-local 1.0.0
 
-更新時間 : 2021.01.14
+更新時間 : 2022.01.14
