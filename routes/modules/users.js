@@ -8,6 +8,9 @@ const User = require('../../models/user')
 // 登入頁面
 router.get('/login', (req, res) => {
   const error = req.flash('error')
+  if (req.isAuthenticated()) {
+    return res.redirect('/')
+  }
   res.render('login', { error })
 })
 
@@ -30,6 +33,9 @@ router.get('/logout', (req, res) => {
 
 // 註冊頁面
 router.get('/register', (req, res) => {
+  if (req.isAuthenticated()) {
+    return res.redirect('/')
+  }
   res.render('register')
 })
 
