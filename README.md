@@ -8,28 +8,28 @@
 
 大螢幕與小螢幕首頁顯示
 
-<p float="left"><img src="https://github.com/z88243310/expense_tracker/blob/master/public/img/home-pc.png" width="49%">
-<img src="https://github.com/z88243310/expense_tracker/blob/master/public/img/home-phone.png" width="49%"></p>
+<p float="left"><img src="https://github.com/z88243310/expense_tracker/blob/master/public/img/home-pc.png" width="400">
+<img src="https://github.com/z88243310/expense_tracker/blob/master/public/img/home-phone.png" width="400"></p>
 
 登入與註冊
 
 <p float="left">
-<img src="https://github.com/z88243310/expense_tracker/blob/master/public/img/login-flow.gif" width="49%">
-<img src="https://github.com/z88243310/expense_tracker/blob/master/public/img/register-flow.gif" width="49%">
+<img src="https://github.com/z88243310/expense_tracker/blob/master/public/img/login-flow.gif" width="400">
+<img src="https://github.com/z88243310/expense_tracker/blob/master/public/img/register-flow.gif" width="400">
 </p>
 
 新增與編輯
 
 <p float="left">
-<img src="https://github.com/z88243310/expense_tracker/blob/master/public/img/new-flow.gif" width="49%">
-<img src="https://github.com/z88243310/expense_tracker/blob/master/public/img/edit-flow.gif" width="49%">
+<img src="https://github.com/z88243310/expense_tracker/blob/master/public/img/new-flow.gif" width="400">
+<img src="https://github.com/z88243310/expense_tracker/blob/master/public/img/edit-flow.gif" width="400">
 </p>
 
 刪除與關鍵字分類
 
 <p float="left">
-<img src="https://github.com/z88243310/expense_tracker/blob/master/public/img/delete-flow.gif" width="49%">
-<img src="https://github.com/z88243310/expense_tracker/blob/master/public/img/keyword-flow.gif" width="49%">
+<img src="https://github.com/z88243310/expense_tracker/blob/master/public/img/delete-flow.gif" width="400">
+<img src="https://github.com/z88243310/expense_tracker/blob/master/public/img/keyword-flow.gif" width="400">
 </p>
 
 ## 功能描述
